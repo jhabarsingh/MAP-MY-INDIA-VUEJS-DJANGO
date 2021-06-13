@@ -1,42 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
       <router-view/>
     </v-main>
@@ -44,12 +7,46 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'App',
 
   data: () => ({
-    //
+    ID: "33OkryzDZsIMAHdl4_Wg1WBJJpoAhBf7IyF93jPqLN3Z5i0J7d2uHa53hYJiPTVXaIzLY80QSJZ05UKSRTZGCjDa1SN1aie80Ku7khSNIWMnb95tkkkjAA==",
+    SECRET: "lrFxI-iSEg_m_e1-KR0zgKXnnWMOP7Y8VOk5TqWbqQNjOAp1IPiNbG21EMMUy69l-tOfEYIERJ5LCfKxD9siE6wkf0MhZwjmcHLNH-PH2huMf9Vj7kbeCWYjt-1SwqIa"
   }),
+  methods: {
+  
+  },
+  async created() {
+    let access = localStorage.getItem("access");
+
+    if(access) {
+      //
+    }
+    else {
+      let PROXY = "http://localhost:8080/";
+      let URL = PROXY + "api/security/oauth/token?grant_type=client_credentials"
+
+      URL += `&client_id=${this.ID}`;
+      URL += `&client_secret=${this.SECRET}`;
+
+      try {
+        let res = await axios.post(URL, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+        }); 
+
+        console.log(res);
+      }
+
+      catch(err) {
+        console.log(err);
+      }
+
+    }
+  }
 };
 </script>
