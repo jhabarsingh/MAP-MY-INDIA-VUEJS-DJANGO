@@ -1,0 +1,6 @@
+LINK: 
+	https://www.mapmyindia.com/api/advanced-maps/doc/authentication-api.php
+
+API-END-POINT:
+	https://outpost.mapmyindia.com/api/security/oauth/token
+
