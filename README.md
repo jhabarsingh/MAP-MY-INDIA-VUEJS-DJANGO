@@ -1,1 +1,1 @@
-# Map-My-India-Vuejs
+# MAP-MY-INDIA-VUEJS-DJANGO
