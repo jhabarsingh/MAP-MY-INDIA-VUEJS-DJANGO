@@ -20,10 +20,11 @@ export default {
   
   },
   async created() {
-    let access = localStorage.getItem("access");
+    let access = localStorage.getItem("mapmyindia_acces_token");
 
     if(access) {
       //
+      console.log("Token Present");
     }
     else {
       let URL = "http://localhost:8000/apis/get-token/"
@@ -31,7 +32,10 @@ export default {
       try {
         let res = await axios.get(URL); 
 
-        console.log(res);
+        let data = res.data
+
+        localStorage.setItem("mapmyindia_acces_token", data.access_token);
+
       }
 
       catch(err) {
