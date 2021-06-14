@@ -13,8 +13,8 @@ export default {
   name: 'App',
 
   data: () => ({
-    ID: "33OkryzDZsIMAHdl4_Wg1WBJJpoAhBf7IyF93jPqLN3Z5i0J7d2uHa53hYJiPTVXaIzLY80QSJZ05UKSRTZGCjDa1SN1aie80Ku7khSNIWMnb95tkkkjAA==",
-    SECRET: "lrFxI-iSEg_m_e1-KR0zgKXnnWMOP7Y8VOk5TqWbqQNjOAp1IPiNbG21EMMUy69l-tOfEYIERJ5LCfKxD9siE6wkf0MhZwjmcHLNH-PH2huMf9Vj7kbeCWYjt-1SwqIa"
+    ID: null,
+    SECRET: null,
   }),
   methods: {
   
@@ -26,18 +26,10 @@ export default {
       //
     }
     else {
-      let PROXY = "http://localhost:8080/";
-      let URL = PROXY + "api/security/oauth/token?grant_type=client_credentials"
-
-      URL += `&client_id=${this.ID}`;
-      URL += `&client_secret=${this.SECRET}`;
+      let URL = "http://localhost:8000/apis/get-token/"
 
       try {
-        let res = await axios.post(URL, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-        }); 
+        let res = await axios.get(URL); 
 
         console.log(res);
       }
