@@ -1,9 +1,7 @@
 <template>
     <Test
-              :position=position
-              :draggable=draggable
-              :title=title
-      />
+        :markers=markers
+    />
 </template>
 
 <script>
@@ -13,9 +11,17 @@
     name: 'Home',
     data() {
       return { 
-        position: [18.5314, 73.845],
-        draggable: true,
-        title: "Marker title"
+        markers:  [{
+            position: [18.5314, 73.845],
+            draggable: true,
+            title: "Marker title",
+            onClick: () => {
+                console.log("clicked ");
+            },
+            onDragend: () => {
+                console.log("dragged");
+            }
+        }]
       }
     },
     components: {

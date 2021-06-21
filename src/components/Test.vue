@@ -3,6 +3,7 @@
         <div id="map"
             :width=width
             :height=height
+            ref="map"
         ></div>
   </div>
   
@@ -125,12 +126,11 @@ export default {
   mounted() { 
     let tried = 0;
     const timer = setInterval(() => {
-        try {
-             console.log(1);              
+        try {            
              if (MapmyIndia && MapmyIndia.Map) {
                clearInterval(timer);
 
-                this.mapNode = document.querySelector("#map");
+               this.mapNode = this.$ref.map;
                this.map = new MapmyIndia.Map(this.mapNode, () => {
                     this.center,
                     this.zoomControl,
@@ -139,6 +139,7 @@ export default {
                     this.hybrid,
                     this.search
                 });
+                console.log(this.mapNode)
                 console.log(this.map)
                 this.renderMarkers();
 
@@ -162,7 +163,7 @@ export default {
             }
         }
         catch (err) {
-            console.log(1);
+            console.log(err);
         }
         
     }, 100)    
@@ -190,7 +191,7 @@ export default {
                     onClick && mk.on("click", onClick);
                     this.map.addLayer(mk);
 
-                    this.markers.push(mk);
+                    this.marker.push(mk);
                     this.map.setView(mk.getLatLng());
                 }
             });
@@ -201,5 +202,5 @@ export default {
 
 
 <style scoped>
-  
+  #map {margin: 0;padding: 0;width: 100%;height: 100%;} 
 </style>
