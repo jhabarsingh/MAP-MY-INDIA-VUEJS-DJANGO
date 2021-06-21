@@ -22,6 +22,11 @@ export default {
   async created() {
     let access = localStorage.getItem("mapmyindia_acces_token");
 
+    if(localStorage.getItem("clear_token")) {
+      // Delete Token
+      localStorage.removeItem("mapmyindia_acces_token")
+    }
+    
     if(access) {
       //
       console.log("Token Present");

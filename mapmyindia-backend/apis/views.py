@@ -18,6 +18,7 @@ class GetAuthAccessToken(APIView):
         URL = "https://outpost.mapmyindia.com/api/security/oauth/token?grant_type=client_credentials"
 
         URL = URL + f'&client_id={ID}&client_secret={SECRET}'
+        print(URL)
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
